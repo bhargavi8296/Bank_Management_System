@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.sql.ResultSet;
+
 import javax.swing.*;
 
 public class Login extends JFrame implements ActionListener{
@@ -101,8 +103,24 @@ public class Login extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
     	try {
+    		boolean flag=e.getSource()==button1?true:false;
+    		
     		if(e.getSource()==button1)
     		{
+    			connect con=new connect();
+    			String card=textField.getText();
+    			String pin=password.getText();
+    			String q="select * from login where card_number ='"+card+"' and pin = '"+pin+"'";
+    			ResultSet result=con.getStatement().executeQuery(q);
+    			if(result.next())
+    			{
+    				setVisible(false);
+    				new main_class(pin);
+    			}
+    			else
+    			{
+    				JOptionPane.showMessageDialog(null,"Incorrect Card Number or PIN");
+    			}
     			
     		}
     		else if(e.getSource()==button3)
@@ -118,7 +136,7 @@ public class Login extends JFrame implements ActionListener{
     	}
     	catch(Exception E)
     	{
-    		
+    		E.printStackTrace();
     	}
     }
     public static void main(String[] args) {
