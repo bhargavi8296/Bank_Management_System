@@ -94,8 +94,10 @@ public class main_class extends JFrame implements ActionListener{
 			if(e.getSource()==buttonD) {new Deposit(pin);setVisible(false);}
 			else if(e.getSource()==exit) {System.exit(0);}
 			else if(e.getSource()==buttonCW) {new withdrawl(pin);setVisible(false);}
-			else if(e.getSource()==buttonBE) {new bankEnquiry(pin);}
-			else if(e.getSource()==buttonFC) {new FastCash(pin);}
+			else if(e.getSource()==buttonBE) {new bankEnquiry(pin);setVisible(false);}
+			else if(e.getSource()==buttonFC) {new FastCash(pin);setVisible(false);}
+			else if(e.getSource()==buttonPC) {new pin(pin);setVisible(false);}
+			else if(e.getSource()==buttonMS) {new mini(pin);setVisible(false);}
 		}
 		catch(Exception E)
 		{
